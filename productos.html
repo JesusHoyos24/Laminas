@@ -12,12 +12,7 @@
   
   <style>
 <style>
-/* Ajuste de altura para móviles - DEBE IR PRIMERO */
-@media (max-width: 768px) {
-  .product-card-image {
-    height: 400px !important;
-  }
-}
+
 
 * {
   margin: 0;
@@ -758,7 +753,7 @@
                     onClick={() => abrirProducto(producto)}
                   >
                     {/* Imagen del Producto */}
-                    <div className="relative h-64 overflow-hidden bg-slate-100 product-card-image">
+                    <div className="relative h-64 overflow-hidden bg-slate-100">
                       <img
                         src={producto.imagen}
                         alt={producto.nombre}

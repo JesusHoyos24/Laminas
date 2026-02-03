@@ -205,6 +205,19 @@
       margin: 3rem 0;
     }
 
+    /* Prevenir scroll interno en todas las secciones */
+    section {
+      overflow-x: hidden;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Asegurar que no haya height fijos que causen problemas */
+    section > div {
+      height: auto !important;
+      min-height: auto !important;
+    }
+
     /* Mobile specific fixes */
     @media (max-width: 768px) {
       .hero-section {
@@ -214,6 +227,36 @@
 
       .mobile-menu-content {
         padding-top: 100px;
+      }
+
+      /* Eliminar restricciones de altura en móvil */
+      section {
+        min-height: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      /* Asegurar que las imágenes no creen scroll interno */
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto !important;
+      }
+
+      /* Prevenir scroll interno en contenedores */
+      .container {
+        overflow: visible !important;
+        height: auto !important;
+      }
+
+      /* Fix específico para la sección de nosotros */
+      #nosotros {
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: auto !important;
+      }
+
+      #nosotros .grid {
+        overflow: visible !important;
       }
     }
   </style>

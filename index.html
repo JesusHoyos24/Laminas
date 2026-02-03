@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <script>
+    // Prevenir zoom en iOS
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+      document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gesturechange', function(e) {
+      e.preventDefault();
+      document.body.style.zoom = 0.99;
+    });
+
+    document.addEventListener('gestureend', function(e) {
+      e.preventDefault();
+      document.body.style.zoom = 1;
+    });
+  </script>
   <title>Laminas Comerciales del Norte - Láminas, Puertas, Ventanas y Cerraduras</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -15,6 +33,15 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      touch-action: pan-y pan-x;
+    }
+
+    html {
+      overflow-x: hidden;
+      width: 100%;
+      touch-action: manipulation;
     }
 
     body {
@@ -22,11 +49,7 @@
       overflow-x: hidden;
       width: 100%;
       position: relative;
-    }
-
-    html {
-      overflow-x: hidden;
-      width: 100%;
+      touch-action: manipulation;
     }
 
     .orbitron {

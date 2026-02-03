@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Laminas Comerciales del Norte - Láminas, Puertas, Ventanas y Cerraduras</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -20,6 +20,13 @@
     body {
       font-family: 'Rajdhani', sans-serif;
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    html {
+      overflow-x: hidden;
+      width: 100%;
     }
 
     .orbitron {
@@ -607,7 +614,6 @@
 
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
                 {/* Formulario */}
-                    {/* Formulario */}
                 <div className="bg-white p-6 md:p-8 rounded-xl shadow-xl">
                   <form action="https://api.web3forms.com/submit" method="POST" className="space-y-4 md:space-y-6">
                     <input type="hidden" name="access_key" value="6cc4cff2-7cc4-4f1e-8fc8-bf12c6f2471f" />

@@ -38,10 +38,23 @@
       touch-action: pan-y pan-x;
     }
 
+    *,
+    *::before,
+    *::after {
+      max-width: 100%;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+
     html {
       overflow-x: hidden;
       width: 100%;
       touch-action: manipulation;
+      max-width: 100vw;
     }
 
     body {
@@ -50,6 +63,26 @@
       width: 100%;
       position: relative;
       touch-action: manipulation;
+      max-width: 100vw;
+    }
+
+    /* Prevenir desbordamiento horizontal */
+    .container {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    /* Fix para las líneas diagonales que se salen */
+    .diagonal-line {
+      position: absolute;
+      width: 100%;
+      max-width: 100vw;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: rotate(-3deg);
+      opacity: 0.3;
+      left: 0;
+      right: 0;
     }
 
     .orbitron {
@@ -121,15 +154,6 @@
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
-    }
-
-    .diagonal-line {
-      position: absolute;
-      width: 150%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transform: rotate(-3deg);
-      opacity: 0.3;
     }
 
     .metal-texture {

@@ -43,7 +43,19 @@
     *::after {
       max-width: 100%;
     }
+*,
+*::before,
+*::after {
+  max-width: 100%;
+}
 
+/* Excepción para el botón de WhatsApp y sus hijos */
+a[aria-label="Contactar por WhatsApp"],
+a[aria-label="Contactar por WhatsApp"] *,
+a[aria-label="Contactar por WhatsApp"]::before,
+a[aria-label="Contactar por WhatsApp"]::after {
+  max-width: none !important;
+}
     img,
     video {
       max-width: 100%;

@@ -204,7 +204,6 @@
       margin: 3rem 0;
     }
 
-    /* Prevenir scroll interno en todas las secciones */
     section {
       overflow-x: hidden;
       overflow-y: visible;
@@ -217,7 +216,6 @@
       min-height: auto !important;
     }
 
-    /* Mobile specific fixes */
     @media (max-width: 768px) {
       .hero-section {
         min-height: 100vh;
@@ -238,20 +236,17 @@
         overflow: visible !important;
       }
 
-      /* Asegurar que las imágenes no creen scroll interno */
       img {
         display: block;
         max-width: 100%;
-        height: auto !important;
+        height: 100% !important;
       }
 
-      /* Prevenir scroll interno en contenedores */
       .container {
         overflow: visible !important;
         height: auto !important;
       }
 
-      /* Fix específico para la sección de nosotros */
       #nosotros {
         overflow-y: visible !important;
         -webkit-overflow-scrolling: auto !important;
@@ -594,14 +589,14 @@
                 <div className="steel-divider max-w-md mx-auto" />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                {productos.map((producto, index) => (
-                  <div 
-                    key={index}
-                    className="card-hover bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer group"
-                    style={{animationDelay: `${index * 0.1}s`}}
-                  >
-                    <div className="relative h-48 md:h-64 overflow-hidden">
+                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    {productos.map((producto, index) => (
+                      <div 
+                        key={index}
+                        className="card-hover bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer group"
+                        style={{animationDelay: `${index * 0.1}s`}}
+                      >
+                        <div className="relative h-72 sm:h-64 md:h-72 lg:h-64 overflow-hidden">
                       <img 
                         src={producto.image} 
                         alt={producto.name}

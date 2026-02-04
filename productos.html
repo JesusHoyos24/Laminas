@@ -11,15 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-<style>
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Rajdhani', sans-serif;
@@ -350,9 +346,9 @@
             'Ideal para uso interior',
             'Variedad de medidas'
           ],
-          imagen: 'public/imagenes-puertas/tamborroble.png',
+          imagen: 'public/imagenes-puertas/tamborRoble.png',
           imagenes: [
-            'public/imagenes-puertas/tamborroble.png'
+            'public/imagenes-puertas/tamborRoble.png'
           ],
           disponible: true
         },
@@ -384,9 +380,9 @@
             'Ideal para uso interior',
             'Variedad de medidas'
           ],
-          imagen: 'public/imagenes-puertas/tamborchocolate1.png',
+          imagen: 'public/imagenes-puertas/TamborChocolate1.png',
           imagenes: [
-            'public/imagenes-puertas/tamborchocolate1.png'
+            'public/imagenes-puertas/TamborChocolate1.png'
           ],
           disponible: true
         },
@@ -690,7 +686,7 @@
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="hidden md:block">
+                  <div >
                     <div className="text-white font-bold text-lg md:text-xl orbitron leading-tight">LAMINAS</div>
                     <div className="text-white text-xs md:text-sm font-semibold tracking-wider">COMERCIALES DEL NORTE</div>
                   </div>
@@ -875,20 +871,7 @@
                       </p>
                     </div>
 
-                    {/* Precio */}
-                    <div className="price-tag text-white px-6 py-4 rounded-xl inline-block mb-8">
-                      <div className="text-sm opacity-90 mb-1">Precio</div>
-                      <div className="flex items-baseline">
-                        <span className="text-4xl font-black">
-                          {productoSeleccionado.precio.toLocaleString()}
-                        </span>
-                        {productoSeleccionado.precioUnidad && (
-                          <span className="text-base ml-2">
-                            {productoSeleccionado.precioUnidad}
-                          </span>
-                        )}
-                      </div>
-                    </div>
+                
 
                     {/* Características */}
                     <div className="mb-8">

@@ -356,25 +356,37 @@
         'public/imagenes-ventanas/ventanasNegra.png',
       ];
 
-      useEffect(() => {
-        const handleScroll = () => {
-          setScrolled(window.scrollY > 50);
-          
-          const sections = ['inicio', 'nosotros', 'productos', 'contacto'];
-          const current = sections.find(section => {
-            const element = document.getElementById(section);
-            if (element) {
-              const rect = element.getBoundingClientRect();
-              return rect.top <= 100 && rect.bottom >= 100;
-            }
-            return false;
-          });
-          if (current) setActiveSection(current);
-        };
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+    
+    const sections = ['inicio', 'productos', 'nosotros', 'contacto'];
+    
+    // Encontrar la sección que está más cerca del top de la pantalla
+    let currentSection = 'inicio';
+    let minDistance = Infinity;
+    
+    sections.forEach(section => {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        // Consideramos el centro superior de la ventana (150px desde arriba)
+        const distance = Math.abs(rect.top - 150);
+        
+        // Si esta sección está más cerca del punto de referencia
+        if (distance < minDistance && rect.top < 300) {
+          minDistance = distance;
+          currentSection = section;
+        }
+      }
+    });
+    
+    setActiveSection(currentSection);
+  };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
       useEffect(() => {
         const interval = setInterval(() => {
@@ -395,13 +407,20 @@
         };
       }, [menuOpen]);
 
-      const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          setMenuOpen(false);
-        }
-      };
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    const headerOffset = 100; // Ajusta este número para más o menos espacio arriba
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+    setMenuOpen(false);
+  }
+};
 
       const productos = [
         { 
@@ -454,20 +473,19 @@
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="hidden md:block">
+                  <div>
                     <div className="text-white font-bold text-xl lg:text-2xl orbitron leading-tight">LAMINAS</div>
                     <div className="text-white text-sm lg:text-base font-semibold tracking-wider">COMERCIALES DEL NORTE</div>
                   </div>
                 </div>
 
-                {/* Desktop Menu - TEXTO MÁS GRANDE */}
-                <ul className="hidden md:flex space-x-6 lg:space-x-10">
-                  {['inicio', 'nosotros', 'productos', 'contacto'].map((item) => (
-                    <li key={item}>
-                      <button
-                        onClick={() => scrollToSection(item)}
-                        className={`nav-link text-white font-semibold text-base lg:text-lg uppercase tracking-wide hover:text-amber-400 transition-colors ${activeSection === item ? 'active text-amber-400' : ''}`}
-                      >
+           <ul className="hidden md:flex space-x-8 lg:space-x-12">
+  {['inicio', 'productos', 'nosotros', 'contacto'].map((item) => (
+    <li key={item}>
+      <button
+        onClick={() => scrollToSection(item)}
+        className={`nav-link text-white font-bold text-lg lg:text-xl uppercase tracking-wide hover:text-amber-400 transition-colors ${activeSection === item ? 'active text-amber-400' : ''}`}
+      >
                         {item === 'contacto' ? 'Contáctanos' : item}
                       </button>
                     </li>
@@ -504,7 +522,7 @@
               </div>
 
               <ul className="flex flex-col px-6 space-y-2">
-                {['inicio', 'nosotros', 'productos', 'contacto'].map((item, index) => (
+                {['inicio', 'productos', 'nosotros', 'contacto'].map((item, index) => (
                   <li key={item} className="slide-in" style={{animationDelay: `${index * 0.1}s`}}>
                     <button
                       onClick={() => scrollToSection(item)}
@@ -553,21 +571,22 @@
               <div className="hero-overlay absolute inset-0" />
             </div>
 
-<div className="container mx-auto px-4 z-10 relative hero-content-mobile">              <div className="max-w-4xl slide-in">
-                <div className="inline-block bg-amber-500 text-blue-900 px-4 md:px-6 py-2 rounded-full font-bold mb-4 md:mb-6 text-sm md:text-base">
+<div className="container mx-auto px-4 z-10 relative hero-content-mobile">              
+  <div className="max-w-4xl slide-in">
+                <div className="inline-block bg-amber-500 text-blue-900 px-6 md:px-8 py-3 md:py-3 rounded-full font-bold mb-6 md:mb-6 text-lg md:text-lg">
                   🏆 25 AÑOS DE EXPERIENCIA
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 md:mb-6 orbitron leading-tight">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-6 orbitron leading-tight">
                   CALIDAD Y PRECIO
                   <span className="block text-amber-400">GARANTIZADOS</span>
                 </h1>
-                <p className="text-lg md:text-xl lg:text-2xl text-slate-200 mb-6 md:mb-8 font-medium leading-relaxed max-w-2xl">
+                <p className="text-xl md:text-2xl lg:text-3xl text-slate-200 mb-8 md:mb-10 font-medium leading-relaxed max-w-2xl">
                   Especialistas en la venta de láminas, puertas, ventanas y cerraduras. 
                   Tu proyecto merece la mejor calidad.
                 </p>
                 <button 
                   onClick={() => scrollToSection('contacto')}
-                  className="group bg-gradient-to-r from-amber-500 to-amber-600 text-blue-900 px-8 md:px-10 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:from-amber-400 hover:to-amber-500 transition-all shadow-xl hover:shadow-2xl hover:scale-105 flex items-center space-x-2"
+                  className="group bg-gradient-to-r from-amber-500 to-amber-600 text-blue-900 px-10 md:px-12 py-4 md:py-5 rounded-lg font-bold text-lg md:text-xl hover:from-amber-400 hover:to-amber-500 transition-all shadow-xl hover:shadow-2xl hover:scale-105 flex items-center space-x-2"
                 >
                   <span>COTIZA AHORA</span>
                   <ChevronRight className="group-hover:translate-x-1 transition-transform" />
